@@ -1,12 +1,13 @@
 package com.artlinux.demo.controller;
 
-// import com.artlinux.demo.Util.Result;
+import com.artlinux.demo.Util.Result;
 import com.artlinux.demo.bean.Dept;
 import com.artlinux.demo.mapper.DeptMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletException;
@@ -24,10 +25,15 @@ public class DemoController {
     private DeptMapper deptMapper;
 
     @GetMapping("/demo/login")
-    public void login(HttpServletRequest request, HttpServletResponse response, int remember)
+    // @PostMapping("/demo/login")
+    public void login(HttpServletRequest request,
+            HttpServletResponse response,
+            // int remember)
+            @RequestParam(name = "remember", defaultValue = "0") int remember)
             throws ServletException, IOException {
         // 1、接收客户端用户名和密码
 
+        // System.out.println(request.getParameter("username"));
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -37,7 +43,7 @@ public class DemoController {
         // 3、判断查询是否有结果
         if (dept != null) {
             // 判断user不为null说明登录成功了
-
+            System.out.println("登录成功");
             // 判断用户是否勾选了记住我 remember
             // 这里用："1".equals(remember) 而不用remember.equals("1")
             // 是为了防止空指针异常 因为remember有可能用户没勾选 为null 然后比较的话会空指针
@@ -67,6 +73,7 @@ public class DemoController {
 
         } else {
             // 登录失败
+            System.out.println("登录失败");
             // 储存错误提示信息到request域当中 转发给login.jsp
             request.setAttribute("login_msg", "用户名或密码错误");
             // 跳转到登录的login.jsp页面

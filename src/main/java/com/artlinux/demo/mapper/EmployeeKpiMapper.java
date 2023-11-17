@@ -20,8 +20,8 @@ public interface EmployeeKpiMapper {
 
     int updateByPrimaryKey(EmployeeKpi record);
 
-    int selctByAll(Map<String, Object> map);
+    int selectByAll(Map<String, Object> map);
 
-    List<EmployeeKpi> selctListByAll(Map<String, Object> map);
+    List<EmployeeKpi> selectListByAll(Map<String, Object> map);
 
 }

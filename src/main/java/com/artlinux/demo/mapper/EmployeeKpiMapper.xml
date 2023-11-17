@@ -12,27 +12,22 @@
   <sql id="Base_Column_List">
     id, employeeID, leader, kpi, comments, check_date
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from employee_kpi
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap"> select <include
+      refid="Base_Column_List" /> from employee_kpi where id = #{id,jdbcType=VARCHAR} </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from employee_kpi
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.artlinux.demo.bean.EmployeeKpi">
     insert into employee_kpi (id, employeeID, leader,
-      kpi, comments, check_date
-      )
+    kpi, comments, check_date
+    )
     values (#{id,jdbcType=VARCHAR}, #{employeeid,jdbcType=VARCHAR}, #{leader,jdbcType=VARCHAR},
-      #{kpi,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, #{checkDate,jdbcType=VARCHAR}
-      )
+    #{kpi,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}, #{checkDate,jdbcType=VARCHAR}
+    )
   </insert>
-  <insert id="insertSelective" parameterType="com.artlinux.demo.bean.EmployeeKpi">
-    insert into employee_kpi
-    <trim prefix="(" suffix=")" suffixOverrides=",">
+  <insert id="insertSelective" parameterType="com.artlinux.demo.bean.EmployeeKpi"> insert into
+    employee_kpi <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
@@ -52,7 +47,8 @@
         check_date,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
+    <trim prefix="values (" suffix=")"
+      suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
@@ -74,8 +70,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.artlinux.demo.bean.EmployeeKpi">
-    update employee_kpi
-    <set>
+    update employee_kpi <set>
       <if test="employeeid != null">
         employeeID = #{employeeid,jdbcType=VARCHAR},
       </if>
@@ -91,61 +86,45 @@
       <if test="checkDate != null">
         check_date = #{checkDate,jdbcType=VARCHAR},
       </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+    </set> where id =
+    #{id,jdbcType=VARCHAR} </update>
   <update id="updateByPrimaryKey" parameterType="com.artlinux.demo.bean.EmployeeKpi">
     update employee_kpi
     set employeeID = #{employeeid,jdbcType=VARCHAR},
-      leader = #{leader,jdbcType=VARCHAR},
-      kpi = #{kpi,jdbcType=VARCHAR},
-      comments = #{comments,jdbcType=VARCHAR},
-      check_date = #{checkDate,jdbcType=VARCHAR}
+    leader = #{leader,jdbcType=VARCHAR},
+    kpi = #{kpi,jdbcType=VARCHAR},
+    comments = #{comments,jdbcType=VARCHAR},
+    check_date = #{checkDate,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
 
-  <select id="selctByAll" resultType="integer">
-  select
-  count(0)
-  from
-  employee_kpi
-  where
-  1=1
-  <if test="employeeID != null">
-    AND employee_kpi.employeeID like concat('%',#{employeeID},'%')
-  </if>
-  <if test="kpi != null">
-    AND employee_kpi.kpi like concat('%',#{kpi},'%')
-  </if>
-  <if test="leader != null">
-    AND employee_kpi.leader like concat('%',#{leader},'%')
-  </if>
-</select>
-
-
-
-  <select id="selctListByAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"></include>
-    from
-    employee_kpi
-    where
-    1=1
-    <if test="employeeID != null">
+  <select id="selectByAll" resultType="integer"> select count(0) from employee_kpi where 1=1 <if
+      test="employeeID != null">
       AND employee_kpi.employeeID like concat('%',#{employeeID},'%')
     </if>
-    <if test="kpi != null">
+  <if
+      test="kpi != null">
+      AND employee_kpi.kpi like concat('%',#{kpi},'%')
+    </if>
+  <if test="leader != null">
+      AND employee_kpi.leader like concat('%',#{leader},'%')
+    </if>
+  </select>
+
+
+  <select id="selectListByAll" resultMap="BaseResultMap"> select <include refid="Base_Column_List"></include>
+    from employee_kpi where 1=1 <if test="employeeID != null">
+      AND employee_kpi.employeeID like concat('%',#{employeeID},'%')
+    </if>
+    <if
+      test="kpi != null">
       AND employee_kpi.kpi like concat('%',#{kpi},'%')
     </if>
     <if test="leader != null">
       AND employee_kpi.leader like concat('%',#{leader},'%')
-    </if>
-    limit #{queryNumber,jdbcType=INTEGER},#{StepSize,jdbcType=INTEGER}
-  </select>
-
-
-
+    </if> limit
+    #{queryNumber,jdbcType=INTEGER},#{StepSize,jdbcType=INTEGER} </select>
 
 
 </mapper>

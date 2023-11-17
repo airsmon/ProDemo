@@ -19,29 +19,36 @@ import java.util.Map;
 public class DeptController {
 
     @Autowired
-    DeptMapper deptMapper;
+    private DeptMapper deptMapper;
 
     // 模糊查询接口
     @GetMapping("/dept/show")
     public Result showUserCollect(PageModel pageModel, @RequestParam Map<String, Object> map) {
-
+        System.out.println("断点");
         String id = map.get("id") + "";
         String manager = map.get("manager") + "";
         String name = map.get("name") + "";
+        System.out.println(id);
+        System.out.println(manager);
         System.out.println(name);
 
-        int num = deptMapper.selctByAll(map);
-
+        // 查询数据库dept表中所有条目总数
+        int num = deptMapper.selectByAll(map);
+        System.out.println(num);
         if (num == 0) {
             return Result.fail("未查询到数据");
         }
-
+        System.out.println(pageModel.getCurrentPage());
+        System.out.println(pageModel.getStepSize());
+        // currentPage: 当前页编号
+        // stepSize: 每页显示的数量
+        // PageModel pageModel1 = new PageModel(1, 5, num);
         PageModel pageModel1 = new PageModel(pageModel.getCurrentPage(), pageModel.getStepSize(), num);
 
         map.put("queryNumber", pageModel1.getQueryNumber());
         map.put("StepSize", pageModel1.getStepSize());
 
-        List<Dept> depts = deptMapper.selctListByAll(map);
+        List<Dept> depts = deptMapper.selectListByAll(map);
 
         Map<String, Object> stringObjectMap = new HashMap<String, Object>();
 

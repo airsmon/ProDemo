@@ -21,7 +21,7 @@ public interface DeptMapper {
 
     Dept selectByusernameAndpassword(@Param("username") String username, @Param("password") String password);
 
-    int selctByAll(Map<String, Object> map);
+    int selectByAll(Map<String, Object> map);
 
-    List<Dept> selctListByAll(Map<String, Object> map);
+    List<Dept> selectListByAll(Map<String, Object> map);
 }

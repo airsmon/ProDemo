@@ -8,12 +8,8 @@
   <sql id="Base_Column_List">
     salary, years
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Float" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from salary_data
-    where salary = #{salary,jdbcType=REAL}
-  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Float" resultMap="BaseResultMap"> select <include
+      refid="Base_Column_List" /> from salary_data where salary = #{salary,jdbcType=REAL} </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Float">
     delete from salary_data
     where salary = #{salary,jdbcType=REAL}
@@ -22,9 +18,8 @@
     insert into salary_data (salary, years)
     values (#{salary,jdbcType=REAL}, #{years,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.artlinux.demo.bean.SalaryData">
-    insert into salary_data
-    <trim prefix="(" suffix=")" suffixOverrides=",">
+  <insert id="insertSelective" parameterType="com.artlinux.demo.bean.SalaryData"> insert into
+    salary_data <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="salary != null">
         salary,
       </if>
@@ -41,15 +36,13 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.artlinux.demo.bean.SalaryData">
-    update salary_data
-    <set>
+  <update id="updateByPrimaryKeySelective" parameterType="com.artlinux.demo.bean.SalaryData"> update
+    salary_data <set>
       <if test="years != null">
         years = #{years,jdbcType=INTEGER},
       </if>
-    </set>
-    where salary = #{salary,jdbcType=REAL}
-  </update>
+    </set> where salary =
+    #{salary,jdbcType=REAL} </update>
   <update id="updateByPrimaryKey" parameterType="com.artlinux.demo.bean.SalaryData">
     update salary_data
     set years = #{years,jdbcType=INTEGER}
@@ -57,11 +50,7 @@
   </update>
 
 
-  <select id="selectByAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"></include>
-    from
-    salary_data
-  </select>
+  <select id="selectByAll" resultMap="BaseResultMap"> select <include refid="Base_Column_List"></include>
+    from salary_data </select>
 
 </mapper>

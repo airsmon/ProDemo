@@ -21,13 +21,13 @@ import java.util.Map;
 public class EmployeeController {
 
     @Autowired
-    EmployeeMapper employeeMapper;
+    private EmployeeMapper employeeMapper;
 
     // 模糊查询接口
     @GetMapping("/employee/show")
     public Result employeeShow(PageModel pageModel, @RequestParam Map<String, Object> map) {
 
-        int num = employeeMapper.selctByAll(map);
+        int num = employeeMapper.selectByAll(map);
 
         if (num == 0) {
             return Result.fail("未查询到数据");
@@ -38,7 +38,7 @@ public class EmployeeController {
         map.put("queryNumber", pageModel1.getQueryNumber());
         map.put("StepSize", pageModel1.getStepSize());
 
-        List<Dept> depts = employeeMapper.selctListByAll(map);
+        List<Dept> depts = employeeMapper.selectListByAll(map);
 
         Map<String, Object> stringObjectMap = new HashMap<String, Object>();
 

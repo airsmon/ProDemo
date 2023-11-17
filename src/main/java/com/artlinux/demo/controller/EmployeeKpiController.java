@@ -2,10 +2,10 @@ package com.artlinux.demo.controller;
 
 import com.artlinux.demo.Util.PageModel;
 import com.artlinux.demo.Util.Result;
-// import com.artlinux.demo.bean.Dept;
+import com.artlinux.demo.bean.Dept;
 import com.artlinux.demo.bean.EmployeeKpi;
 import com.artlinux.demo.bean.SalaryData;
-// import com.artlinux.demo.mapper.DeptMapper;
+import com.artlinux.demo.mapper.DeptMapper;
 import com.artlinux.demo.mapper.EmployeeKpiMapper;
 import com.artlinux.demo.mapper.SalaryDataMapper;
 import org.apache.commons.lang3.StringUtils;
@@ -24,13 +24,13 @@ import java.util.Map;
 public class EmployeeKpiController {
 
     @Autowired
-    EmployeeKpiMapper employeeKpiMapper;
+    private EmployeeKpiMapper employeeKpiMapper;
 
     // 模糊查询接口
     @GetMapping("/employeeKpi/show")
     public Result showUserCollect(PageModel pageModel, @RequestParam Map<String, Object> map) {
 
-        int num = employeeKpiMapper.selctByAll(map);
+        int num = employeeKpiMapper.selectByAll(map);
 
         if (num == 0) {
             return Result.fail("未查询到数据");
@@ -41,7 +41,7 @@ public class EmployeeKpiController {
         map.put("queryNumber", pageModel1.getQueryNumber());
         map.put("StepSize", pageModel1.getStepSize());
 
-        List<EmployeeKpi> depts = employeeKpiMapper.selctListByAll(map);
+        List<EmployeeKpi> depts = employeeKpiMapper.selectListByAll(map);
 
         Map<String, Object> stringObjectMap = new HashMap<String, Object>();
 

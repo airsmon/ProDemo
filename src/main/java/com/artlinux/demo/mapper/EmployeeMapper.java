@@ -19,7 +19,7 @@ public interface EmployeeMapper {
 
     int updateByPrimaryKey(Employee record);
 
-    int selctByAll(Map<String, Object> map);
+    int selectByAll(Map<String, Object> map);
 
-    List<Dept> selctListByAll(Map<String, Object> map);
+    List<Dept> selectListByAll(Map<String, Object> map);
 }

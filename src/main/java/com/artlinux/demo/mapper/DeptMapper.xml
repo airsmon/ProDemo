@@ -9,25 +9,20 @@
   <sql id="Base_Column_List">
     id, manager, name
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from dept
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap"> select <include
+      refid="Base_Column_List" /> from dept where id = #{id,jdbcType=VARCHAR} </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from dept
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.artlinux.demo.bean.Dept">
     insert into dept (id, manager, name
-      )
+    )
     values (#{id,jdbcType=VARCHAR}, #{manager,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
-      )
+    )
   </insert>
-  <insert id="insertSelective" parameterType="com.artlinux.demo.bean.Dept">
-    insert into dept
-    <trim prefix="(" suffix=")" suffixOverrides=",">
+  <insert id="insertSelective" parameterType="com.artlinux.demo.bean.Dept"> insert into dept <trim
+      prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
@@ -50,46 +45,28 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.artlinux.demo.bean.Dept">
-    update dept
-    <set>
+  <update id="updateByPrimaryKeySelective" parameterType="com.artlinux.demo.bean.Dept"> update dept <set>
       <if test="manager != null">
         manager = #{manager,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+    </set> where id =
+    #{id,jdbcType=VARCHAR} </update>
   <update id="updateByPrimaryKey" parameterType="com.artlinux.demo.bean.Dept">
     update dept
     set manager = #{manager,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR}
+    name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
-
-  <select id="selectByusernameAndpassword" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"></include>
-    from
-    dept
-    where
-    id=#{username,jdbcType=VARCHAR}
-    and
-    '123456'=#{password,jdbcType=VARCHAR}
+  <select id="selectByusernameAndpassword" resultMap="BaseResultMap"> select 
+    <include refid="Base_Column_List"></include> from dept where id=#{username,jdbcType=VARCHAR} and '123456'=#{password,jdbcType=VARCHAR} 
   </select>
 
-
-  <select id="selctByAll" resultType="integer">
-    select
-    count(0)
-    from
-    dept
-    where
-    1=1
-    <if test="id != null">
+  <select id="selectByAll" resultType="integer"> select count(0) from dept where 1=1 <if
+      test="id != null">
       AND dept.id like concat('%',#{id},'%')
     </if>
     <if test="manager != null">
@@ -100,14 +77,8 @@
     </if>
   </select>
 
-  <select id="selctListByAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"></include>
-    from
-    dept
-    where
-    1=1
-    <if test="id != null">
+  <select id="selectListByAll" resultMap="BaseResultMap"> select <include refid="Base_Column_List"></include>
+    from dept where 1=1 <if test="id != null">
       AND dept.id like concat('%',#{id},'%')
     </if>
     <if test="manager != null">
@@ -115,10 +86,8 @@
     </if>
     <if test="name != null">
       AND dept.name like concat('%',#{name},'%')
-    </if>
-    limit #{queryNumber,jdbcType=INTEGER},#{StepSize,jdbcType=INTEGER}
-  </select>
-
+    </if> limit
+    #{queryNumber,jdbcType=INTEGER},#{StepSize,jdbcType=INTEGER} </select>
 
 
 </mapper>

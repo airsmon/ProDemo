@@ -11,25 +11,20 @@
   <sql id="Base_Column_List">
     id, dept, name, position, Salary
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from employee
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap"> select <include
+      refid="Base_Column_List" /> from employee where id = #{id,jdbcType=VARCHAR} </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from employee
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.artlinux.demo.bean.Employee">
-    insert into employee (id, dept, name, 
-      position, Salary)
-    values (#{id,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{position,jdbcType=VARCHAR}, #{salary,jdbcType=REAL})
+    insert into employee (id, dept, name,
+    position, Salary)
+    values (#{id,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+    #{position,jdbcType=VARCHAR}, #{salary,jdbcType=REAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.artlinux.demo.bean.Employee">
-    insert into employee
-    <trim prefix="(" suffix=")" suffixOverrides=",">
+  <insert id="insertSelective" parameterType="com.artlinux.demo.bean.Employee"> insert into employee <trim
+      prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
@@ -64,9 +59,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.artlinux.demo.bean.Employee">
-    update employee
-    <set>
+  <update id="updateByPrimaryKeySelective" parameterType="com.artlinux.demo.bean.Employee"> update
+    employee <set>
       <if test="dept != null">
         dept = #{dept,jdbcType=VARCHAR},
       </if>
@@ -79,32 +73,20 @@
       <if test="salary != null">
         Salary = #{salary,jdbcType=REAL},
       </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+    </set> where id =
+    #{id,jdbcType=VARCHAR} </update>
   <update id="updateByPrimaryKey" parameterType="com.artlinux.demo.bean.Employee">
     update employee
     set dept = #{dept,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      position = #{position,jdbcType=VARCHAR},
-      Salary = #{salary,jdbcType=REAL}
+    name = #{name,jdbcType=VARCHAR},
+    position = #{position,jdbcType=VARCHAR},
+    Salary = #{salary,jdbcType=REAL}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
 
-
-
-
-
-
-  <select id="selctByAll" resultType="integer">
-    select
-    count(0)
-    from
-    employee
-    where
-    1=1
-    <if test="id != null">
+  <select id="selectByAll" resultType="integer"> select count(0) from employee where 1=1 <if
+      test="id != null">
       AND employee.id like concat('%',#{id},'%')
     </if>
     <if test="dept != null">
@@ -117,18 +99,12 @@
       AND employee.position like concat('%',#{position},'%')
     </if>
     <if test="Salary != null">
-      AND employee.Salary like concat('%',#{Salary},'%')
+    AND employee.Salary like concat('%',#{Salary},'%')
     </if>
   </select>
 
-  <select id="selctListByAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"></include>
-    from
-    employee
-    where
-    1=1
-    <if test="id != null">
+  <select id="selectListByAll" resultMap="BaseResultMap"> select <include refid="Base_Column_List"></include>
+    from employee where 1=1 <if test="id != null">
       AND employee.id like concat('%',#{id},'%')
     </if>
     <if test="dept != null">
@@ -141,9 +117,8 @@
       AND employee.position like concat('%',#{position},'%')
     </if>
     <if test="Salary != null">
-      AND employee.Salary like concat('%',#{Salary},'%')
-    </if>
-    limit #{queryNumber,jdbcType=INTEGER},#{StepSize,jdbcType=INTEGER}
-  </select>
+    AND employee.Salary like concat('%',#{Salary},'%')
+    </if> limit
+    #{queryNumber,jdbcType=INTEGER},#{StepSize,jdbcType=INTEGER} </select>
 
 </mapper>
